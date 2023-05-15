@@ -4,12 +4,23 @@ import { getGlobalNotionData } from '@/lib/notion/getNotionData'
 import * as ThemeMap from '@/themes'
 import { useGlobal } from '@/lib/global'
 import { generateRss } from '@/lib/rss'
+import { generateRobotsTxt } from '@/lib/robots.txt'
+
+/**
+ * 首页布局
+ * @param {*} props
+ * @returns
+ */
 const Index = props => {
   const { theme } = useGlobal()
   const ThemeComponents = ThemeMap[theme]
   return <ThemeComponents.LayoutIndex {...props} />
 }
 
+/**
+ * SSG 获取数据
+ * @returns
+ */
 export async function getStaticProps() {
   const from = 'index'
   const props = await getGlobalNotionData({ from })
@@ -17,7 +28,6 @@ export async function getStaticProps() {
   const { siteInfo } = props
   props.posts = props.allPages.filter(page => page.type === 'Post' && page.status === 'Published')
 
-  delete props.allPages
   const meta = {
     title: `${siteInfo?.title} | ${siteInfo?.description}`,
     description: siteInfo?.description,
@@ -43,8 +53,14 @@ export async function getStaticProps() {
     }
   }
 
-  // 异步生成Feed订阅
-  generateRss(props?.latestPosts || [])
+  // 生成robotTxt
+  generateRobotsTxt()
+  // 生成Feed订阅
+  if (JSON.parse(BLOG.ENABLE_RSS)) {
+    generateRss(props?.latestPosts || [])
+  }
+
+  delete props.allPages
 
   return {
     props: {

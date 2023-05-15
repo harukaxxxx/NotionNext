@@ -1,9 +1,10 @@
 import BLOG from 'blog.config'
-import React from 'react'
+import React, { useEffect } from 'react'
 import dynamic from 'next/dynamic'
 
 import 'animate.css'
 import '@/styles/globals.css'
+import '@/styles/nprogress.css'
 
 // core styles shared by all of react-notion-x (required)
 import 'react-notion-x/src/styles.css'
@@ -20,11 +21,12 @@ import { Sakura } from '@/components/Sakura'
 import { StarrySky } from '@/components/StarrySky'
 import MusicPlayer from '@/components/MusicPlayer'
 import ExternalScript from '@/components/ExternalScript'
-import { isBrowser } from '@/lib/utils'
 import smoothscroll from 'smoothscroll-polyfill'
 
 import AOS from 'aos'
 import 'aos/dist/aos.css' // You can also use <link> for styles
+import { isMobile } from '@/lib/utils'
+import TwikooCommentCounter from '@/components/TwikooCommentCounter'
 
 const Ackee = dynamic(() => import('@/components/Ackee'), { ssr: false })
 const Gtag = dynamic(() => import('@/components/Gtag'), { ssr: false })
@@ -52,19 +54,22 @@ const MyApp = ({ Component, pageProps }) => {
         {JSON.parse(BLOG.MUSIC_PLAYER) && <MusicPlayer />}
         {JSON.parse(BLOG.NEST) && <Nest />}
         {JSON.parse(BLOG.FLUTTERINGRIBBON) && <FlutteringRibbon />}
+        {JSON.parse(BLOG.COMMENT_TWIKOO_COUNT_ENABLE) && <TwikooCommentCounter {...pageProps}/>}
         {JSON.parse(BLOG.RIBBON) && <Ribbon />}
         <ExternalScript/>
     </>
 
-  if (isBrowser()) {
+  useEffect(() => {
     AOS.init()
-    smoothscroll.polyfill()
-  }
+    if (isMobile()) {
+      smoothscroll.polyfill()
+    }
+  }, [])
 
   return (
         <GlobalContextProvider>
-            {externalPlugins}
             <Component {...pageProps} />
+            {externalPlugins}
         </GlobalContextProvider>
   )
 }
