@@ -105,15 +105,13 @@ export default function Modal(props) {
 
                 {/* </div> */}
 
-                <Link href={modalContent?.href}>
-                  <LazyImage
-                    onLoad={handleImageLoad}
-                    placeholderSrc={thumbnail}
-                    src={bigImage}
-                    ref={imgRef}
-                    className={`w-full select-none max-w-7xl max-h-[90vh] shadow-xl  animate__animated animate__fadeIn'`}
-                  />
-                </Link>
+                <LazyImage
+                  onLoad={handleImageLoad}
+                  placeholderSrc={thumbnail}
+                  src={bigImage}
+                  ref={imgRef}
+                  className={`w-full select-none max-w-7xl max-h-[90vh] shadow-xl  animate__animated animate__fadeIn'`}
+                />
 
                 <>
                   <div className='absolute bottom-0 left-0 m-4 z-20'>

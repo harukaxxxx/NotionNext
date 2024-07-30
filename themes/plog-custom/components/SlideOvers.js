@@ -3,6 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { Footer } from './Footer'
 import SocialButton from './SocialButton'
 import { siteConfig } from '@/lib/config'
+import { useGlobal } from '@/lib/global'
 
 /**
  * 侧拉抽屉
@@ -21,6 +22,8 @@ export default function SlideOvers({ children, cRef }) {
   const toggleSlideOvers = () => {
     setOpen(!open)
   }
+  
+  const { locale } = useGlobal()
 
   return (
         <Transition.Root show={open} as={Fragment}>
@@ -61,9 +64,8 @@ export default function SlideOvers({ children, cRef }) {
                                         leaveTo="opacity-0 transition-y-32"
                                     >
                                         <div className='max-w-7xl mx-auto space-y-6'>
-                                            <h2 className='text-4xl text-gray-200'>关于{siteConfig('AUTHOR')}</h2>
-                                            <h2 className='text-2xl text-gray-400'>{siteConfig('BIO')}</h2>
-                                            <h2 className='text-4xl text-gray-200'>联系我</h2>
+                                            <h2 className='text-4xl text-gray-200'>{locale.NAV.ABOUT}</h2>
+                                            <h3 className='text-2xl text-gray-400'>{siteConfig('BIO')}</h3>
                                             <SocialButton/>
                                             <Footer/>
                                         </div>
