@@ -104,21 +104,22 @@ export default function Modal(props) {
                 </div>
 
                 {/* </div> */}
-
-                <LazyImage
-                  onLoad={handleImageLoad}
-                  placeholderSrc={thumbnail}
-                  src={bigImage}
-                  ref={imgRef}
-                  className={`w-full select-none max-w-7xl max-h-[90vh] shadow-xl  animate__animated animate__fadeIn'`}
-                />
+                {/* <Link href={modalContent?.href}> */}
+                  <LazyImage
+                    onLoad={handleImageLoad}
+                    placeholderSrc={thumbnail}
+                    src={bigImage}
+                    ref={imgRef}
+                    className={`w-full select-none max-w-7xl max-h-[90vh] shadow-xl  animate__animated animate__fadeIn'`}
+                  />
+                {/* </Link> */}
 
                 <>
                   <div className='absolute bottom-0 left-0 m-4 z-20'>
                     <div className='flex'>
                       <h2
                         style={{ textShadow: '0.1em 0.1em 0.2em black' }}
-                        className='text-2xl md:text-5xl text-white mb-4 px-2 py-1 rounded-lg'>
+                        className='text-2xl md:text-3xl text-white mb-4 px-2 py-1 rounded-lg'>
                         {modalContent?.title}
                       </h2>
                     </div>
@@ -130,7 +131,7 @@ export default function Modal(props) {
                       {modalContent?.summary}
                     </div>
 
-                    {modalContent?.category && (
+                    {/* {modalContent?.category && (
                       <div className='flex'>
                         <Link
                           href={`/category/${modalContent?.category}`}
@@ -138,7 +139,7 @@ export default function Modal(props) {
                           {modalContent?.category}
                         </Link>
                       </div>
-                    )}
+                    )} */}
                   </div>
 
                   {/* 卡片的阴影遮罩，为了凸显图片上的文字 */}

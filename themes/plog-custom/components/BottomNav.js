@@ -91,9 +91,9 @@ const MenuList = props => {
         {links?.map((link, index) => (
           <MenuItemDrop key={index} link={link} />
         ))}
-        <li className='my-auto px-2'>
+        {/* <li className='my-auto px-2'>
           <FullScreenButton />
-        </li>
+        </li> */}
         <li className='my-auto px-2'>
           <InformationButton />
         </li>

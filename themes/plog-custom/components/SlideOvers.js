@@ -43,7 +43,7 @@ export default function SlideOvers({ children, cRef }) {
 
                 <div className="fixed inset-0 overflow-hidden z-10">
                     <div className="absolute inset-0 overflow-hidden">
-                        <div className="pointer-events-none fixed inset-x-0 bottom-0 flex max-h-full pb-16">
+                        <div className="pointer-events-none fixed inset-x-0 bottom-0 flex max-h-full">
                             <Transition.Child
                                 as={Fragment}
                                 enter="transform transition ease-in-out duration-500"
@@ -53,7 +53,7 @@ export default function SlideOvers({ children, cRef }) {
                                 leaveFrom="translate-y-0"
                                 leaveTo="translate-y-full"
                             >
-                                <Dialog.Panel style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }} className="pointer-events-auto relative y-screen max-h-md glassmorphism w-screen p-4 mb-2">
+                                <Dialog.Panel style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }} className="pointer-events-auto relative y-screen max-h-md glassmorphism w-screen p-4">
                                     <Transition.Child
                                         as={Fragment}
                                         enter="ease-in-out duration-500"
