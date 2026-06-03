@@ -7,7 +7,6 @@ import { siteConfig } from '@/lib/config'
 import NotByAI from '@/components/NotByAI'
 
 export default function ArticleCopyright({ post }) {
-  console.log('post 物件:', post)
   const router = useRouter()
   const [path, setPath] = useState(siteConfig('LINK') + router.asPath)
   useEffect(() => {
@@ -26,7 +25,7 @@ export default function ArticleCopyright({ post }) {
         <li>
           <strong className='mr-2'>{locale.COMMON.AUTHOR}:</strong>
           <SmartLink href={'/about'} className='hover:underline'>
-            {post.author[0] ?? siteConfig('AUTHOR')}
+            {post?.author?.[0] ?? siteConfig('AUTHOR')}
           </SmartLink>
         </li>
         <li>
